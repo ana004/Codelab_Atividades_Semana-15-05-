@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 public class HelloController {
     @GetMapping("/hello")
     public ModelAndView hello() {
-        ModelAndView mv = new ModelAndView("hello");
+        ModelAndView mv = new ModelAndView("hello"); //nome do arquivo html a ser renderizado/exibido
         mv.addObject("nome", "Maria!");
         return mv; //Spring vai renderizar o arquivo templates/hello.html
     }
