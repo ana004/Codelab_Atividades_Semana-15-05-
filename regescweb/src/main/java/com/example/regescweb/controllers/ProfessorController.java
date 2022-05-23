@@ -1,12 +1,14 @@
 package com.example.regescweb.controllers;
 
 
+import com.example.regescweb.dto.RequisicaoNovoProfessor;
 import com.example.regescweb.models.Professor;
 import com.example.regescweb.models.StatusProfessor;
 import com.example.regescweb.repositories.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -32,5 +34,12 @@ public class ProfessorController {
         mv.addObject("statusProfessor", StatusProfessor.values());
 
         return mv;
+    }
+    @PostMapping("/professores")
+    public String create(RequisicaoNovoProfessor requisicao) {
+        Professor professor = requisicao.toProfessor();
+        this.professorRepository.save(professor);
+
+        return "redirect:/professores";
     }
 }
